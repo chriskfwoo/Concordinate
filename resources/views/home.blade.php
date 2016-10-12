@@ -8,7 +8,7 @@
                 <div class="panel-heading">BLABLASBLASBLDABLASDB CONTENT</div>
 
                 <div class="panel-body">
-                    Welcome!
+                    Welcome here!
                 </div>
             </div>
         </div>
