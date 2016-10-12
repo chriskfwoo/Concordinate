@@ -8,7 +8,7 @@
                 <div class="panel-heading"></div>
 
                 <div class="panel-body">
-                    Welcome {{ $name }}!
+                    Welcome {{ $name }}! lala
                 </div>
             </div>
         </div>
