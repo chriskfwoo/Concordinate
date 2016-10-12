@@ -25,16 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $name = Auth::user()->name;
+
+        return view('home', [
+            'name' => $name
+        ]);
     }
 
-    public function testing()
+    public function profile()
     {
-        dd(Auth::user()->email);
-    }
-
-    public function register()
-    {
-        dd('register?');
+        return view('profile');
     }
 }
