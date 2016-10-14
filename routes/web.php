@@ -24,4 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user/profile', 'HomeController@profile');
 
 	Route::get('/testing', 'HomeController@testing');
+
+	Route::get('/scraping', 'HomeController@scraping');
 });
