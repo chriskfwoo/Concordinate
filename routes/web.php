@@ -15,6 +15,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/scraping', 'HomeController@scraping');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -25,3 +27,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/testing', 'HomeController@testing');
 });
+
