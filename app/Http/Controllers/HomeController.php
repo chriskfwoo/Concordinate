@@ -15,7 +15,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function homeView()
     {
         $name = Auth::user()->name;
 
@@ -24,8 +24,19 @@ class HomeController extends Controller
         ]);
     }
 
-    public function profile()
+    public function schedulerView()
     {
-        return view('profile');
+        return view('scheduler');
     }
+
+    public function viewScheduleView()
+    {
+        return view('viewSchedule');
+    }
+
+    public function completedCoursesView()
+    {
+        return view('completed-courses');
+    }
+
 }

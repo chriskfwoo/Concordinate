@@ -8,11 +8,10 @@
                 <div class="panel-heading"></div>
 
                 <div class="panel-body">
-                    gdsafhsdfhfsdhfds
+                    VIEW SCHEDULE PAGE
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-

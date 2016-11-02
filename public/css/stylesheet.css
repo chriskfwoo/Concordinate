@@ -1,0 +1,74 @@
+.navbar-custom{
+  font-size: 1.5em;
+}
+
+.bg-faded{
+  background-color: #400000 !important;
+}
+
+.nav-link{
+  color:white !important;
+}
+
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+  color: #8C8C8C !important;
+}
+body {
+  background-color: #ECECEA !important;
+}
+
+.active-page{
+  color:  #FFD700 !important;
+}
+
+.welcome-user-info{
+  padding-top: 30px;
+  text-align: center;
+}
+
+li {
+  padding-right: 30px;
+}
+
+
+
+/*COMPLETED COURSES*/
+.btn-outline-danger{
+  width: 100%;
+  margin-top:10px !important;
+  background-color: #d9534f !important;
+  color: white !important;
+}
+
+.btn-outline-danger:hover{
+  background-color: #400000 !important;
+  border-color: #400000 !important;
+}
+
+
+.completed-btn{
+  width: 100%;
+  color: white;
+  background-color: #A65F42;
+  margin-top: 20px;
+}
+
+.completed-btn:hover{
+  background-color: #400000 !important;
+}
+
+
+/*.btn-outline-danger:focus{
+  background-color: black !important;
+}*/
+
+.btn-outline-danger.active{
+  background-color: grey !important;
+  opacity: .2;
+  border-color: grey !important;
+}
+
+.reset-form{
+  width: 20%;
+}
