@@ -30,5 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user/profile', 'HomeController@profile');
 
 	Route::get('/testing', 'HomeController@testing');
+
+	//sgas
+
+	Route::get('/courses/completed/save', 'HomeController@saveCompletedCourses');
 });
 

@@ -4,12 +4,13 @@
 
 <div class="container">
       <div class="row" style="padding-top:30px;">
-        <form role="form" action="../index.html" method="post" class="login-form">
+        <form role="form" action="{{ url('/courses/completed/save') }}" method="get" class="login-form">
         <div class="col-sm-3">
           <p style="text-align: center;padding-top:30px;">Year 1</p>
             <div class="row">
               <div class="col-sm-6">
-                    <button type="button" class="btn btn-outline-danger" data-toggle="button">COMP232</button>
+                    <input type="submit" name = "COMP232" value = "COMP232" class="btn btn-outline-danger" data-toggle="button"/>
+                    <input type="checkbox" name = "test" value = "test"/> 
                     <button type="button" class="btn btn-outline-danger" data-toggle="button">COMP248</button>
                     <button type="button" class="btn btn-outline-danger" data-toggle="button">ENGR213</button>
                     <button type="button" class="btn btn-outline-danger" data-toggle="button">ENGR201</button>

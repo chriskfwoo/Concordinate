@@ -36,7 +36,15 @@ class HomeController extends Controller
 
     public function completedCoursesView()
     {
-        return view('completed-courses');
+        $array = ['COMP232' => 1];
+
+        return view('completed-courses', [
+                'courses' => $array
+            ]);
+    }
+
+    public function saveCompletedCourses(Request $request) {
+         dd($request);
     }
 
 }
