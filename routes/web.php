@@ -19,7 +19,13 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'HomeController@homeView');
+
+	Route::get('/scheduler', 'HomeController@schedulerView');
+
+	Route::get('/schedule', 'HomeController@viewScheduleView');
+
+	Route::get('/completed', 'HomeController@completedCoursesView');
 
 	Route::get('/user/profile', 'HomeController@profile');
 

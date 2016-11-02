@@ -1,0 +1,28 @@
+body{
+  background-color: #400000 !important;
+
+}
+
+.logo{
+  background-color: white;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.logsignup-container{
+  background-color: white;
+  margin: 10% 5%;
+  padding: 25px;
+  border-radius: 25px;
+  border-style:5px solid white;
+
+  height: auto;
+}
+
+.login{
+  float: left;
+}
+
+.signup{
+  float: left;
+}
