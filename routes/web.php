@@ -33,6 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/getCombinations', 'SchedulingMethods@getCombinations');
 
-	
+	Route::get('/courses/completed/save', 'HomeController@saveCompletedCourses');
 });
 
