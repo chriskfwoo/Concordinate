@@ -1,11 +1,41 @@
-@extends('layouts.app')
 
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Styles -->
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+</head>
+
+<body>
 <div class="container">
-    <div class="row">
+  <div class="row">
+       <div class="col-sm-8 col-sm-offset-2 name-settings" style="letter-spacing:1em">
+           <h1><strong>CONCORDINATE</strong></h1>
+       </div>
+   </div>
+    <div class="row login-div">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">Login
+
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -58,10 +88,12 @@
                                 </a>
                             </div>
                         </div>
+                        <p  style="text-align:right;padding-right:20px;"><a href="{{ url('/register') }}">Don't have an account?<strong> Sign up now!</strong></a></p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

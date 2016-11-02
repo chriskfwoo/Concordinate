@@ -68,3 +68,7 @@ li {
   opacity: .2;
   border-color: grey !important;
 }
+
+.reset-form{
+  width: 20%;
+}
