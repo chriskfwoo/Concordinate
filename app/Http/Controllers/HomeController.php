@@ -40,6 +40,10 @@ class HomeController extends Controller
     {
         $completedCourses = json_decode(Auth::user()->completed_courses);
 
+        if ($completedCourses == null) {
+            $completedCourses = [];
+        }
+
         return view('completed-courses', [
                 'completedCourses' => $completedCourses
             ]);
@@ -47,6 +51,10 @@ class HomeController extends Controller
 
     public function saveCompletedCourses(Request $request) {
         $completedCourses       = $request->get('completedCourses');
+
+        if ($completedCourses == null) {
+            $completedCourses = [];
+        }
         $jsonCompletedCourses   = json_encode($completedCourses);
         
         $user = Auth::user();
