@@ -46,9 +46,9 @@ class HomeController extends Controller
     }
 
     public function saveCompletedCourses(Request $request) {
-        $completedCourses       = $request->get('check_list');
+        $completedCourses       = $request->get('completedCourses');
         $jsonCompletedCourses   = json_encode($completedCourses);
-
+        
         $user = Auth::user();
         $user->completed_courses = $jsonCompletedCourses;
         $user->save();
