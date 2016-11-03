@@ -21,7 +21,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/', 'HomeController@homeView');
 
-	Route::get('/scheduler', 'HomeController@schedulerView');
+	Route::get('/scheduler', 'GenerateScheduleController@schedulerView');
+
+	Route::get('/scheduler/generate', 'GenerateScheduleController@getPossibleSchedules');
 
 	Route::get('/schedule', 'HomeController@viewScheduleView');
 
@@ -33,6 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/getCombinations', 'SchedulingMethods@getCombinations');
 
-	Route::get('/courses/completed/save', 'HomeController@saveCompletedCourses');
+	Route::post('/courses/completed/save', 'HomeController@saveCompletedCourses');
 });
 

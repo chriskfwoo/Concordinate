@@ -6,7 +6,7 @@
 
       <div class="row" style="padding-top:30px;">
 
-        <form role="form" action="{{ url('/courses/completed/save') }}" method="get" class="login-form">
+        <form role="form" action="{{ url('/courses/completed/save') }}" method="post" class="login-form">
         <div class="col-sm-3">
           <p style="text-align: center;padding-top:30px;">Year 1</p>
             <div class="row">

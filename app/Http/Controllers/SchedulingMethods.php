@@ -9,11 +9,10 @@ use App\Section;
 
 class SchedulingMethods extends Controller
 {
-    public function getCombinations()
+    public function getCombinations($courses)
     {
-        
 	    $sections = Section::all();
-	    $courses = array( "ENGR202", "ENCS282", "ELEC275");
+	    // $courses = array( "ENGR202", "ENCS282", "ELEC275");
 		$combos_for_courses = array();
 		$sections_for_courses = array();
 		foreach ($courses as $course)
