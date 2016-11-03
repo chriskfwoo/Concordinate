@@ -1,3 +1,19 @@
+/*FOR SET COMPLETED PAGE*/
+#ck-button:hover {
+    background:red;
+}
+
+#ck-button label {
+    float:left;
+    width:4.0em;
+}
+
+#ck-button label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+}
+
 .navbar-custom{
   font-size: 1.5em;
 }

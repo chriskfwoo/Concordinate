@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 use App\User;
 use App\Section;
 use App\Course;
@@ -36,15 +38,32 @@ class HomeController extends Controller
 
     public function completedCoursesView()
     {
-        $array = ['COMP232' => 1];
+        $completedCourses = json_decode(Auth::user()->completed_courses);
+
+        if ($completedCourses == null) {
+            $completedCourses = [];
+        }
 
         return view('completed-courses', [
-                'courses' => $array
+                'completedCourses' => $completedCourses
             ]);
     }
 
     public function saveCompletedCourses(Request $request) {
-         dd($request);
+        $completedCourses       = $request->get('completedCourses');
+
+        if ($completedCourses == null) {
+            $completedCourses = [];
+        }
+        $jsonCompletedCourses   = json_encode($completedCourses);
+        
+        $user = Auth::user();
+        $user->completed_courses = $jsonCompletedCourses;
+        $user->save();
+
+        return Redirect::to('completed')->with('completed', $completedCourses);
+
+        // @if (in_array('COMP248', $completedCourses)) checked="checked" @endif
     }
 
 }

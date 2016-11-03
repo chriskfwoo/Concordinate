@@ -51,7 +51,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{{ url('/completed') }}">Set Completed Courses</a>
               <a class="dropdown-item" href="resetpassword.html">Change Password</a>
-              <a class="dropdown-item" href="login/welcome.html">Logout</a>
+              <a class="dropdown-item" href="{{ url('/logout') }}" 
+                onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">Logout</a>
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
             </div>
           </li>
 
