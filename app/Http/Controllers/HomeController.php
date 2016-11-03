@@ -28,6 +28,7 @@ class HomeController extends Controller
 
     public function schedulerView()
     {
+        //dd(Course::find('COMP249')->prereqs()->get()->first()->pivot->pre_req_course_id);
         return view('scheduler');
     }
 
