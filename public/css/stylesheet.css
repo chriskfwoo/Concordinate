@@ -1,3 +1,51 @@
+/*FOR SET COMPLETED PAGE*/
+.vis-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+}
+
+.course-label {
+  margin: 10px;
+  padding: 5px;
+	width: 100%;
+	text-align: center;
+	background-color: #d9534f !important;
+	color: white !important;
+}
+
+input:hover + label {
+	background-color: #400000 !important;
+  border-color: #400000 !important;
+	color: white !important;
+}
+
+input:checked + label {
+	background-color: grey !important;
+  opacity: .2;
+  border-color: grey !important;
+}
+
+input:focus:checked + label {
+
+}
+
+.completed-btn{
+	background-color: #400000 !important;
+	color: white;
+	width: 100%;
+}
+
+.completed-btn:hover{
+  background-color: black !important;
+}
+
+/***************************************/
+
 .navbar-custom{
   font-size: 1.5em;
 }
@@ -34,7 +82,7 @@ li {
 
 
 /*COMPLETED COURSES*/
-.btn-outline-danger{
+/*.btn-outline-danger{
   width: 100%;
   margin-top:10px !important;
   background-color: #d9534f !important;
@@ -54,30 +102,24 @@ li {
   margin-top: 20px;
 }
 
-.completed-btn:hover{
-  background-color: #400000 !important;
-}
+
 
 
 /*.btn-outline-danger:focus{
   background-color: black !important;
 }*/
 
-.btn-outline-danger.active{
+/*.btn-outline-danger.active{
   background-color: grey !important;
   opacity: .2;
   border-color: grey !important;
-}
+}*/
 
-.reset-form{
-  width: 20%;
-}
-
-input[type=checkbox] + label {
+/*input[type=checkbox] + label {
   color: #ccc;
   font-style: italic;
-} 
+}
 input[type=checkbox]:checked + label {
   color: #f00;
   font-style: normal;
-} 
+}*/
