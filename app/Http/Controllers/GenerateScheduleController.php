@@ -55,10 +55,23 @@ class GenerateScheduleController extends Controller
 		return $availableCourses;
 	}
 
+	/**
+	 * Method that returns to the frontend the possible schedules generated from the preferences.
+	 */
 	public function getPossibleSchedules(Request $request) 
 	{
-		// dd();
-		app('App\Http\Controllers\SchedulingMethods')->getCombinations($request->get('courses'));
+		//get all the courses needed to pass to the get combinations method
+		$section = new Section;
+		$sections = $section->getSectionsForScheduler($request);
+
+		//get the combinations that are non conflicting now.
+		$schedules = $section->getNonConflictingSchedules($sections);
+
+
+
+		app('App\Http\Controllers\SchedulingMethods')->getCombinations();
+
+		//return collection of possible schedules
 	}
 
 }
