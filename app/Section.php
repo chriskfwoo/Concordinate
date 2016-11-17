@@ -17,7 +17,7 @@ class Section extends Model
     {
     	//get all the courses needed to pass to the get combinations method
 		$courses = $request->get('courses');
-
+        dd($courses);
 		$section = new Section;
 		$sections = $section
 			->whereIn('course', $courses)
