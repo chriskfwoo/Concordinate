@@ -22,12 +22,13 @@ class GenerateScheduleController extends Controller
         return view('scheduler')->with('courses', $availableCourses);
     }
 
-    // public function generatedSchedulesView($combinations)
-    // {
-    // 	return view('getcombinations', [
-    // 		'results' => $combinations
-    // 	]);
-    // }
+    public function generatedSchedulesView($combinations)
+    {
+    	dd($combinations);
+    	return view('generated-schedules', [
+    		'results' => $combinations
+    	]);
+    }
 
     /**
      * method that returns all the available courses the user can currently take
@@ -75,17 +76,22 @@ class GenerateScheduleController extends Controller
 
 		$combinations = $section->getCombinations($courseSections);
 		
+		dd(json_encode($combinations[0]));
 		$results = new Paginator(
 			$combinations, 
-			count($combinations), 
 			3
     	);	
-
+		// dd($results);
     	$results->setPath('generate');
-
-		return view('getcombinations', [
+    	// dd($results);
+    	// return redirect('generated/schedules')->with('data', $results);
+		return view('generated-schedules', [
 			'results' =>$results
 		]);
+
+		// return redirect()->action('GenerateScheduleController@generatedSchedulesView', 
+		// 	['combinations' => $results]
+		// );
 	}
 
 }
