@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use App\User;
 use App\Section;
@@ -19,6 +21,13 @@ class GenerateScheduleController extends Controller
         $availableCourses = $this->getAvailableCourses();
         return view('scheduler')->with('courses', $availableCourses);
     }
+
+    // public function generatedSchedulesView($combinations)
+    // {
+    // 	return view('getcombinations', [
+    // 		'results' => $combinations
+    // 	]);
+    // }
 
     /**
      * method that returns all the available courses the user can currently take
@@ -60,20 +69,23 @@ class GenerateScheduleController extends Controller
 	 */
 	public function getPossibleSchedules(Request $request) 
 	{
-		;
-		// dd($request);
 		//get all the courses needed to pass to the get combinations method
-		$section = new Section;
-		dd($section->getCombinations());
-		$sections = $section->getSectionsForScheduler($request);
+		$section 		= new Section;
+		$courseSections = $section->getSectionsForScheduler($request);
 
-		//get the combinations that are non conflicting now.
-		$schedules = $section->getNonConflictingSchedules($sections);
+		$combinations = $section->getCombinations($courseSections);
+		
+		$results = new Paginator(
+			$combinations, 
+			count($combinations), 
+			3
+    	);	
 
+    	$results->setPath('generate');
 
-
-
-		//return collection of possible schedules
+		return view('getcombinations', [
+			'results' =>$results
+		]);
 	}
 
 }

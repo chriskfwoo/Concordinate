@@ -10,53 +10,37 @@ class Section extends Model
 
     public $timestamps = false;
 
-    public function getCombinations()
+    public function getCombinations($courseSections)
     {
-        // dd('hi');
-        //for development and testing, the module has the course list defined in code. Later the module can be adapted to receive a list from a calling function  
-        $sections = Section::all();
-        $courses = array( "ENGR213", "ENCS282", "ELEC275", "ENGR233");
         $combos_for_courses = array();
         $sections_for_courses = array();
         
         /* This section fetches all lectures for a course. For each lecture, it fetches all associated labs and tutorials. It then finds all combinations of lecture with its tutotials and labs and pushes them to an array called $combo_for_course. The combo_for_course is then pushed to an array called $combos_for_course which contains all combiations for a course (lecture, its tutorial and lab). Finally combos_for_course is pushed to an array called $combos_for_courses, which contains combos_for_course from all courses on the course list.*/
-        foreach ($courses as $course)
+        foreach ($courseSections as $course => $sections_for_course)
         {
             $combos_for_course = array();
 
-            /**
-             * Daniel:
-             * get al sections for the specified course and put them into variable.
-             */
-
-
-            $sections_for_course = $sections->filter(function($bar) use($course)
-            {
-                if ($bar->course ==  $course) {
-                return true;
-                }
-            });
-
             //$sections_for_courses will be used later in the algorithm to find time conflicts between sections 
             $sections_for_courses = array_merge($sections_for_courses, $sections_for_course->toArray());
+
             $lectures = $sections_for_course->filter(function($bar) use($course)
             {
-                if ($bar->type ==  "  Lec    ") {
+                if ($bar->type ==  "Lec") {
                 return true;
                 }
             });
-
+            
             foreach ($lectures as $lecture)
             {
                 $tutorials = $sections_for_course->filter(function($bar) use($lecture)
                 {
-                    if ($bar->type ==  "  Tut    " && $bar->section3 == $lecture->section3 ) {
+                    if ($bar->type ==  "Tut" && $bar->section3 == $lecture->section3 ) {
                     return true;
                     }
                 });
                 $labs = $sections_for_course->filter(function($bar) use($lecture)
                 {
-                    if ($bar->type ==  "  Lab   " && $bar->section3 == $lecture->section3) {
+                    if ($bar->type ==  "Lab" && $bar->section3 == $lecture->section3) {
                     return true;
                     }
                 });
@@ -103,6 +87,7 @@ class Section extends Model
             }
             array_push ($combos_for_courses, $combos_for_course);
         }
+
         /*this section creates takes each section for each course on the course list and creates an array of its meeting times. The array has an elements with keys: section_id, start, end. start and end are arrays themselvelves becaseu a section can have many meetings in a week. The meeting times are transformed to be compared with each other their start and end times are formed by concatinating the hour of day they meet (24 hour format and always 2 digits) with the minute they meet (always 2 digits). Then the day they meet is translated to a number for that day and added to the fron of the string. In this way two sections times can be compared.*/     
         $sections_day_times = array();
         $conversion = array();
@@ -190,13 +175,14 @@ class Section extends Model
                 $flag = false;
             }
         }
-        print ("count of all combinations before conflict check: ");
-        print (count ($all_combinations) . '<br>');     
 
-        
-        print ("count of all combinations after conflict check: ");
-        print (count ($all_combinations) . '<br>');
-        return view('getcombinations', compact('combos_for_courses', 'all_combinations', 'conflicting_combinations'));
+        return $all_combinations;
+        // print ("count of all combinations before conflict check: ");
+        // print (count ($all_combinations) . '<br>');     
+
+        // print ("count of all combinations after conflict check: ");
+        // print (count ($all_combinations) . '<br>');
+        // return view('getcombinations', compact('combos_for_courses', 'all_combinations', 'conflicting_combinations'));
     }
 
     /**
@@ -206,90 +192,19 @@ class Section extends Model
     {
     	//get all the courses needed to pass to the get combinations method
 		$courses = $request->get('courses');
-        dd($courses);
+        
 		$section = new Section;
 		$sections = $section
 			->whereIn('course', $courses)
+            ->where('semester', '=', 'fall')
 			->applyPreferences()
 			->get();
 
 		$courses = $sections->groupBy('course');
 
-		foreach ($courses as $courseKey => $course) {
-    		$courses[$courseKey] = $course->groupBy('section3');
-
-    		foreach ($courses[$courseKey] as $sectionKey => $sections) {
-    			$courses[$courseKey][$sectionKey] = $sections->groupBy('type');
-    		}
-    	}
-
-		return $courses->toArray();
+        return $courses;
     }
 
-    /**
-     * Get all the non conflicting schedule possibilities
-     */
-    public function getNonConflictingSchedules($courses)
-    {
-    	$schedules = collect([]);
-    	$schedule = collect([]);
-
-    	$course  = current($courses);
-    	$section = current($course);
-    	$lecture = $section["  Lec    "];
-
-    	$this->tryToAdd($lecture, $courses, $schedule, $schedules);
-
-    	
-
-
-    	
-
-    	dd($schedules);
-		return $schedules;    	
-    }
-
-    public function tryToAdd($lecture, $coursess, $schedule, $schedules) 
-    {
-
-    	//if no conflict, add. else, move to next Lecture
-    	if (!$this->checkConflict(current($lecture), $schedule)) {
-
-    		$schedule->push($lecture);
-
-    		//if there is NO MORE nextCourse, it is a complete lecture schedule.
-
-    		if (!next($courses)) {
-    			$schedules->push($schedule);
-    			$schedule = collect([]);
-    		} else {
-    			//if ther is a next course, continue wiht next course
-    			$this->tryToAdd('lecture', $courses, $schedule, $schedules);
-    		}
-
-    	} else {	
-    		//check the next lecture of this course.
-    		$nextLecture = next($lecture);
-
-    		//if there is a next lecture to try to add, try it
-    		//if not, there is no more lecture, therefore you need to go back and change the lecture of previous course.
-    		if ($nextLecture) {
-    			$this->tryToAdd($nextLecture, $courses, $schedule, $schedules);
-    		} else {
-
-    		}
-    	}
-    }
-
-
-    public function checkConflict($toBeAdded, $schedule) 
-    {	
-    	return false;
-    }
-
-    /**
-     * Apply the preferences when getting the sections
-     */
     public function scopeApplyPreferences($query)
     {
 
