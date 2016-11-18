@@ -60,9 +60,11 @@ class GenerateScheduleController extends Controller
 	 */
 	public function getPossibleSchedules(Request $request) 
 	{
+		;
 		// dd($request);
 		//get all the courses needed to pass to the get combinations method
 		$section = new Section;
+		dd($section->getCombinations());
 		$sections = $section->getSectionsForScheduler($request);
 
 		//get the combinations that are non conflicting now.
@@ -70,7 +72,6 @@ class GenerateScheduleController extends Controller
 
 
 
-		app('App\Http\Controllers\SchedulingMethods')->getCombinations();
 
 		//return collection of possible schedules
 	}
