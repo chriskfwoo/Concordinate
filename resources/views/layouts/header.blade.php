@@ -18,6 +18,13 @@
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 
 
+    <link href='css/fullcalendar.css' rel='stylesheet' />
+    <link href='css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src='js/moment.min.js'></script>
+    <script src='js/jquery.min.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -28,7 +35,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 
-    
+
 </head>
 <body>
     <nav class="navbar navbar-full navbar-light bg-faded">
@@ -46,8 +53,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/schedule') }}">View</a>
           </li>
-          <li class="nav-item dropdown float-xs-right">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item dropdown float-xs-right" style="margin-left: 400px;">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

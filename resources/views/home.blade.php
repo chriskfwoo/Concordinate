@@ -146,7 +146,7 @@
           <a class="nav-link" href="{{ url('/schedule') }}">View</a>
         </li>
         <li class="nav-item dropdown float-xs-right">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Account
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -157,7 +157,7 @@
                         document.getElementById('logout-form').submit();">Logout</a>
             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                       {{ csrf_field() }}
-                                  </form>
+            </form>
           </div>
         </li>
 
