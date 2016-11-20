@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use App\User;
 use App\Section;
@@ -18,6 +20,14 @@ class GenerateScheduleController extends Controller
     {
         $availableCourses = $this->getAvailableCourses();
         return view('scheduler')->with('courses', $availableCourses);
+    }
+
+    public function generatedSchedulesView($combinations)
+    {
+    	dd($combinations);
+    	return view('generated-schedules', [
+    		'results' => $combinations
+    	]);
     }
 
     /**
@@ -55,10 +65,27 @@ class GenerateScheduleController extends Controller
 		return $availableCourses;
 	}
 
+	/**
+	 * Method that returns to the frontend the possible schedules generated from the preferences.
+	 */
 	public function getPossibleSchedules(Request $request) 
 	{
-		// dd();
-		app('App\Http\Controllers\SchedulingMethods')->getCombinations($request->get('courses'));
+		//get all the courses needed to pass to the get combinations method
+		$section 		= new Section;
+		$courseSections = $section->getSectionsForScheduler($request);
+
+		$combinations = $section->getCombinations($courseSections);
+		
+		$results = new Paginator(
+			$combinations, 
+			3
+    	);	
+		
+    	$results->setPath('generate');
+    
+		return view('generated-schedules', [
+			'results' =>$results
+		]);
 	}
 
 }

@@ -1,3 +1,48 @@
+/* FOR VIEW SCHEDULE */
+#sidemenu{
+	float: left;
+	border-right: 5px solid black;
+	height: 600px;;
+	/*background-color: #999999;*/
+	color: #400000;
+	font-size: 16px;
+	padding-left: 20px;
+}
+
+#schedule-content{
+	float: left;
+}
+
+.program-schedule{
+	margin-top: 30px;
+}
+
+.program-schedule>select{
+   overflow:auto;
+	 border: none;
+	 /*background-color: #999999;*/
+	 height: auto;
+	 width: 100%;
+	 text-align: center;
+	 outline:none;
+ border:none;
+ box-shadow:none;
+
+}
+
+.program-schedule option:hover{
+	background-color: white;
+	color: #400000;
+}
+
+.program-schedule option:focus{
+	background-color: white;
+	color: #400000;
+
+}
+
+
+
 /*FOR SET COMPLETED PAGE*/
 .vis-hidden {
 	border: 0;
@@ -18,17 +63,19 @@
 	color: white !important;
 }
 
-input:hover + label {
+
+.col-sm-6>input:hover + label {
 	background-color: #400000 !important;
   border-color: #400000 !important;
 	color: white !important;
 }
 
-input:checked + label {
+.col-sm-6>input:checked + label {
 	background-color: grey !important;
   opacity: .2;
   border-color: grey !important;
 }
+
 
 input:focus:checked + label {
 
@@ -123,3 +170,75 @@ input[type=checkbox]:checked + label {
   color: #f00;
   font-style: normal;
 }*/
+
+
+/* FOR SCHEDULER PART*/
+
+.scheduler-course-label {
+  margin: 10px;
+  padding: 5px;
+  width: 20%;
+  text-align: center;
+  background-color: #d9534f !important;
+  color: white !important;
+}
+
+#course-select>input:hover + label {
+  background-color: #400000 !important;
+  border-color: #400000 !important;
+  color: white !important;
+}
+
+#course-select>input:checked + label {
+  background-color: grey !important;
+  opacity: .2;
+  border-color: grey !important;
+}
+
+
+/* Scheduler TAB STYLE */
+
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.nav > li > a:focus, .nav > li > a:hover{
+	background-color: transparent !important;
+}

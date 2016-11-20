@@ -9,10 +9,10 @@ use App\Section;
 
 class SchedulingMethods extends Controller
 {
-    public function getCombinations($courses)
+    public function getCombinations()
     {
 	    $sections = Section::all();
-	    // $courses = array( "ENGR202", "ENCS282", "ELEC275");
+	    $courses = array( "ENGR202", "ENCS282", "ELEC275");
 		$combos_for_courses = array();
 		$sections_for_courses = array();
 		foreach ($courses as $course)
@@ -122,6 +122,7 @@ class SchedulingMethods extends Controller
 		$conversion["W"] = "3";
 		$conversion["J"] = "4";
 		$conversion["F"] = "5";
+
 		foreach ($sections_for_courses as $section)
 		{
 			$section_day_times = array();
