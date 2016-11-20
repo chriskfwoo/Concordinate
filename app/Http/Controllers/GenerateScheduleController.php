@@ -76,11 +76,7 @@ class GenerateScheduleController extends Controller
 
 		$combinations = $section->getCombinations($courseSections);
 		
-		$results = new Paginator(
-			$combinations, 
-			3
-    	);	
-		
+		$results = new Paginator($combinations, 3);	
     	$results->setPath('generate');
     
 		return view('generated-schedules', [
