@@ -33,7 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/generated/schedules/{combinations}', 'GenerateScheduleController@generatedSchedulesView');
 
-	Route::post('/generated/schedules/save', 'GenerateScheduleController@saveSchedule');
+	Route::post('/generated/schedules/save', [
+		'as' => 'saveSchedule',
+		'uses' => 'GenerateScheduleController@saveSchedule'
+	]);
 
 	Route::get('/testing', 'HomeController@testing');
 	

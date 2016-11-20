@@ -73,19 +73,22 @@ class GenerateScheduleController extends Controller
 		//get all the courses needed to pass to the get combinations method
 		$section 		= new Section;
 		$courseSections = $section->getSectionsForScheduler($request);
-
+		
 		$combinations = $section->getCombinations($courseSections);
 		
-		$results = new Paginator($combinations, 3);	
+		$results = new Paginator($combinations, 10);	
     	$results->setPath('generate');
     
 		return view('generated-schedules', [
-			'results' =>$results
+			'results' => $results,
+			'totalResults' => count($combinations)
 		]);
 	}
 
 	public function saveSchedule(Request $request) 
 	{
+		dd($request);
+		dd($sections);
 		dd($request);
 	}
 
