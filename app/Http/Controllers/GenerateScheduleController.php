@@ -84,8 +84,9 @@ class GenerateScheduleController extends Controller
 		]);
 	}
 
-	public function saveSchedule(Request $request) 
+	public function saveSchedule($sections) 
 	{
+		dd($sections);
 		dd($request);
 	}
 
