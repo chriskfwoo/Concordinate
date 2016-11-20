@@ -28,11 +28,11 @@ class HomeController extends Controller
 
     public function viewScheduleView()
     {
-        
+
         $user = Auth::user();
         $schedules = json_decode($user->schedules);
-        
-        return view('viewSchedule', [
+
+        return view('viewschedule', [
             'schedules' => $schedules
         ]);
     }
@@ -57,7 +57,7 @@ class HomeController extends Controller
             $completedCourses = [];
         }
         $jsonCompletedCourses   = json_encode($completedCourses);
-        
+
         $user = Auth::user();
         $user->completed_courses = $jsonCompletedCourses;
         $user->save();
