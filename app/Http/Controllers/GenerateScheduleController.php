@@ -76,22 +76,16 @@ class GenerateScheduleController extends Controller
 
 		$combinations = $section->getCombinations($courseSections);
 		
-		dd(json_encode($combinations[0]));
 		$results = new Paginator(
 			$combinations, 
 			3
     	);	
-		// dd($results);
+		
     	$results->setPath('generate');
-    	// dd($results);
-    	// return redirect('generated/schedules')->with('data', $results);
+    
 		return view('generated-schedules', [
 			'results' =>$results
 		]);
-
-		// return redirect()->action('GenerateScheduleController@generatedSchedulesView', 
-		// 	['combinations' => $results]
-		// );
 	}
 
 }
