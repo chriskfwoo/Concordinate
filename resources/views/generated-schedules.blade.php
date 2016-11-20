@@ -13,6 +13,7 @@
                     <div class="container">
                         <?php foreach ($results as $sections): ?>
                             
+                            <form role="form" action="{{ url('/generated/schedules/save') }}" method="post" class="login-form">
                                 <h4>Schedule</h4>
                             <?php foreach ($sections as $section): ?>
                                 <?php echo $section->id ?><br>
@@ -24,7 +25,8 @@
                                 <?php echo $section->room ?><br>
                                 <br><br>
                             <?php endforeach; ?>
-
+                            <button type="submit" class="btn completed-btn">Pick this Schedule</button>
+                            </form>
                         <?php endforeach; ?>
                     </div>
 
