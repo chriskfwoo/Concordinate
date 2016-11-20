@@ -31,8 +31,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/user/profile', 'HomeController@profile');
 
-	Route::get('/generated/schedules/{combinations}', 
-		'GenerateScheduleController@generatedSchedulesView');
+	Route::get('/generated/schedules/{combinations}', 'GenerateScheduleController@generatedSchedulesView');
+
+	Route::post('/generated/schedules/save', 'GenerateScheduleController@saveSchedule');
 
 	Route::get('/testing', 'HomeController@testing');
 	
