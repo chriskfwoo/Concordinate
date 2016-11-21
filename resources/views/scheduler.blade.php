@@ -8,7 +8,7 @@
                 <div class="panel-heading"></div>
 
                 <div class="panel-body">
-                    <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form">
+                    <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form" onsubmit="return checkCourse(this)">
 
                     <ul class="tab">
                       <li><a href="javascript:void(0)" class="tablinks" onclick="dispPref(event, 'preferences')" id="defaultOpen">Basic Preferences</a></li>
@@ -23,17 +23,17 @@
                     </div>
 
                     <div id="preferences" class="tabcontent">
-                        Semester: <input type="radio" name="semester" value="fall" checked>Fall&nbsp;&nbsp;<input type="radio" name="semester" value="winter">Winter<br><br>
+                        Semester: <input type="radio" name="semester" value="fall" checked>Fall<input type="radio" name="semester" value="winter">Winter<br><br>
                         Credit load: <input type="number" name="credit" value="15"><br>
                         
                     </div>
 
                     <div id="time-pref" class="tabcontent">
-                        Monday:&nbsp;Off<input type="checkbox" name="dayoff[]" value="Monday">&nbsp;Not Before:<input type="time" name="before[]">&nbsp;Not after:<input type="time" name="after[]"><br><br>
-                        Tuesday:&nbsp;Off<input type="checkbox" name="dayoff[]" value="Tuesday">&nbsp;Not Before:<input type="time" name="before[]">&nbsp;Not after:<input type="time" name="after[]"><br><br>
-                        Wednesday:&nbsp;Off<input type="checkbox" name="dayoff[]" value="Wednesday">&nbsp;Not Before:<input type="time" name="before[]">&nbsp;Not after:<input type="time" name="after[]"><br><br>
-                        Thursday:&nbsp;Off<input type="checkbox" name="dayoff[]" value="Thursday">&nbsp;Not Before:<input type="time" name="before[]">&nbsp;Not after:<input type="time" name="after[]"><br><br>
-                        Friday:&nbsp;Off<input type="checkbox" name="dayoff[]" value="Friday">&nbsp;Not Before:<input type="time" name="before[]">&nbsp;Not after:<input type="time" name="after[]"><br><br>
+                        Monday:Off<input type="checkbox" name="dayoff[]" value="Monday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                        Tuesday:Off<input type="checkbox" name="dayoff[]" value="Tuesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                        Wednesday:Off<input type="checkbox" name="dayoff[]" value="Wednesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                        Thursday:Off<input type="checkbox" name="dayoff[]" value="Thursday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                        Friday:Off<input type="checkbox" name="dayoff[]" value="Friday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
                         
                     </div>
 
@@ -62,4 +62,18 @@
         </div>
     </div>
 </div>
+
+<!-- NEED TO SELECT AT LEAST ONE COURSE -->
+<script type="text/javascript">
+
+  function checkCourse(form)
+  {
+    if($('[name="courses[]"]:checked').length == 0){
+        alert('You must select at least one course!');
+        return false;
+    }
+    return true;
+}
+
+</script>
 @endsection

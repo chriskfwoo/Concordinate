@@ -242,3 +242,15 @@ ul.tab li a:focus, .active {
 .nav > li > a:focus, .nav > li > a:hover{
 	background-color: transparent !important;
 }
+
+
+
+/*Generated Schedules*/
+.details {
+  float: left;
+  background-color: grey;
+}
+
+.calendar {
+  background-color: black;
+}

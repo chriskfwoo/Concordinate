@@ -40,7 +40,10 @@ class GenerateScheduleController extends Controller
      */
 	public function getAvailableCourses($continue = null) 
 	{
-		$completedCourses = json_decode(Auth::user()->completed_courses);
+		$completedCourses =[];
+		if(isset(Auth::user()->completed_courses)){
+			$completedCourses = json_decode(Auth::user()->completed_courses);
+		}
 		$availableCourses = collect();
 		
 		if ($continue) {
