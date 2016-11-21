@@ -18,6 +18,7 @@
                             $i++;
                             ?>
                             <form role="form" action="{{ url('/generated/schedules/save') }}" method="post" class="generated-form">
+                                <input type="hidden" name="continue" value="{{ $continue }}">
                                 <h4>Schedule {{ $i }}</h4>
                             <?php foreach ($sections as $section): ?>
                                 <?php $course = $section->course ?>

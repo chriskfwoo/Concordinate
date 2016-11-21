@@ -98,12 +98,12 @@ class Section extends Model
                         {
                             if ($bar3[$i]["start"] == $bar3[$j]["start"])
                             {
-                               if ($labs->contains($bar3[$j]["id"]))
+                               if ($labs->contains(strval($bar3[$j]["id"])))
                                 {
                                     // print ("yes labs it contains it".'<br>' );
-                                    $labs->forget($bar3[$j]["id"]);
+                                    $labs->forget(strval($bar3[$j]["id"]));
                                 }
-                                if ($labs->contains($bar3[$j]["id"]))
+                                if ($labs->contains(strval($bar3[$j]["id"])))
                                 {
                                     // print ("it still contains it".'<br>' );
                                 }

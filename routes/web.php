@@ -38,6 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'GenerateScheduleController@saveSchedule'
 	]);
 
+	Route::get('/generated/schedules/save/confirm', [
+		'as' => 'confirmSchedule',
+		'uses' => 'GenerateScheduleController@continueScheduleView'
+	]);
+
 	Route::get('/testing', 'HomeController@testing');
 	
 	Route::get('/getCombinations', 'SchedulingMethods@getCombinations');
