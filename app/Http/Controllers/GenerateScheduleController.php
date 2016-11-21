@@ -35,7 +35,10 @@ class GenerateScheduleController extends Controller
      */
 	public function getAvailableCourses() 
 	{
-		$completedCourses = json_decode(Auth::user()->completed_courses);
+		$completedCourses =[];
+		if(isset(Auth::user()->completed_courses)){
+			$completedCourses = json_decode(Auth::user()->completed_courses);
+		}
 		$availableCourses = collect();
 
 		//get all the courses where who are not in pivot table, and also all the courses where all the pivot elements are met.

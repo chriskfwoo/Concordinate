@@ -15,14 +15,14 @@
     <link href="/css/custom.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
 
 
-    <link href='css/fullcalendar.css' rel='stylesheet' />
-    <link href='css/fullcalendar.print.css' rel='stylesheet' media='print' />
-    <script src='js/moment.min.js'></script>
-    <script src='js/jquery.min.js'></script>
-    <script src='js/fullcalendar.min.js'></script>
+    <link href='/css/fullcalendar.css' rel='stylesheet' />
+    <link href='/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src='/js/moment.min.js'></script>
+    <script src='/js/jquery.min.js'></script>
+    <script src='/js/fullcalendar.min.js'></script>
 
 
     <!-- Scripts -->

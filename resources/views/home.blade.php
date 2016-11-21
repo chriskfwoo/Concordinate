@@ -1,172 +1,93 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='utf-8' />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.header')
 
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    You have generated {var_number} schedules.<br>
+                </div>
 
-<title>{{ config('app.name', 'Concordinate') }}</title>
+                <div class="panel-body">
+                    Do you wish to continue?<br>
+                    
+                    <!-- EDIT REQUIRED DATA IN <form> 
+                         This form is just for the NO button-->
+                    <form role="form" action="" method="post" class="generated-form">
+                        <button type="button" onclick="dispPref1()">Yes</button>
 
-<!-- Styles -->
-<link href="/css/app.css" rel="stylesheet">
-<link href="/css/custom.css" rel="stylesheet">
-<link href='css/fullcalendar.css' rel='stylesheet' />
-<link href='css/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src='js/moment.min.js'></script>
-<script src='js/jquery.min.js'></script>
-<script src='js/fullcalendar.min.js'></script>
+                        <!-- THIS INPUT SHOULD CONTAIN THE DATA PASSED IF WE CLICK ON NO -->
+                        <input type="text" name="" value="" hidden="true">
+                        <button type="submit" onclick="alert('saved')">No</button><br>
+                    </form><br>
 
+                    <!-- THIS FORM IS FOR THE NEXT SEMESTER 
+                        NEED TO EDIT THE ACTION -->
 
-<!-- Custom CSS -->
-<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+                    <form role="form" action="" method="get" class="login-form">
 
+                        <div id="generate-schedule" style="display:none">
+                              
+                            <ul class="tab">
+                              <li><a href="javascript:void(0)" class="tablinks" onclick="dispPref(event, 'preferences')" id="defaultOpen">Basic Preferences</a></li>
+                              <li><a href="javascript:void(0)" class="tablinks" onclick="dispPref(event, 'time-pref')">Time constraints</a></li>
+                              <li><a href="javascript:void(0)" class="tablinks" onclick="dispPref(event, 'course-select')">Select Courses</a></li>
+                            </ul>
 
-<!-- Scripts -->
-<script>
-    window.Laravel = <?php echo json_encode([
-        'csrfToken' => csrf_token(),
-    ]); ?>
-</script>
+                            <div id="course-select" class="tabcontent">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+                            <!-- THIS IS THE COURSE TAB. WE NEED TO GET THE CORRECT COURSES -->
 
+                            </div>
 
+                            <div id="preferences" class="tabcontent">
 
-<script>
+                            <!-- NEED TO CHECK BY DEFAULT THE CORRECT NEXT SEMESTER BASED ON PREVIOUS GENERATED -->
+                                Semester: <input type="radio" name="semester" value="fall" checked>Fall<input type="radio" name="semester" value="winter">Winter<br><br>
+                                Credit load: <input type="number" name="credit" value="15"><br>
+                                
+                            </div>
 
-	$(document).ready(function() {
+                            <div id="time-pref" class="tabcontent">
+                                Monday:Off<input type="checkbox" name="dayoff[]" value="Monday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                                Tuesday:Off<input type="checkbox" name="dayoff[]" value="Tuesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                                Wednesday:Off<input type="checkbox" name="dayoff[]" value="Wednesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                                Thursday:Off<input type="checkbox" name="dayoff[]" value="Thursday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                                Friday:Off<input type="checkbox" name="dayoff[]" value="Friday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
+                                
+                            </div>
 
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listWeek'
-			},
-			defaultDate: '2016-09-12',
-			navLinks: true, // can click day/week names to navigate views
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2016-09-01'
-				},
-				{
-					title: 'Long Event',
-					start: '2016-09-07',
-					end: '2016-09-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2016-09-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2016-09-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2016-09-11',
-					end: '2016-09-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-09-12T10:30:00',
-					end: '2016-09-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2016-09-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-09-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2016-09-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2016-09-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2016-09-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2016-09-28'
-				}
-			]
-		});
+                        <button type="submit" class="btn completed-btn">Generate Schedule</button>
 
-	});
+                        </div>
 
-</script>
-<style>
-
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 400px;
-    max-height: 400px;
-		margin: 0 auto;
-	}
-
-</style>
-</head>
-<body>
-
-  <nav class="navbar navbar-full navbar-light bg-faded">
-    <div class="container">
-    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
-    <div class="collapse navbar-toggleable-md navbar-custom" id="navbarResponsive">
-      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-      <ul class="nav navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/scheduler') }}">Scheduler</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/schedule') }}">View</a>
-        </li>
-        <li class="nav-item dropdown float-xs-right">
-          <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ url('/completed') }}">Set Completed Courses</a>
-            <a class="dropdown-item" href="resetpassword.html">Change Password</a>
-            <a class="dropdown-item" href="{{ url('/logout') }}"
-              onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">Logout</a>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                      {{ csrf_field() }}
-            </form>
-          </div>
-        </li>
-
-      </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  </nav>
+</div>
+<script type="text/javascript">
+    function  dispPref1(){
+        $('#generate-schedule').show();
+    }
+</script>
+<script type="text/javascript">
+    document.getElementById("defaultOpen").click();
 
-	<div id='calendar'></div>
-
-</body>
-</html>
+    function dispPref(evt, category) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(category).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+</script>
+@endsection

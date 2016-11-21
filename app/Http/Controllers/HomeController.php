@@ -30,7 +30,9 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $schedules = json_decode($user->schedules);
-        
+         if($schedules == null){
+           $schedules = [];
+        }
         return view('viewSchedule', [
             'schedules' => $schedules
         ]);
