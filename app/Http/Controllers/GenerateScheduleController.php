@@ -30,16 +30,37 @@ class GenerateScheduleController extends Controller
     	]);
     }
 
+    public function continueScheduleView()
+    {
+    	return view('confirm-schedule');
+    }
+
     /**
      * method that returns all the available courses the user can currently take
      */
-	public function getAvailableCourses() 
+	public function getAvailableCourses($continue = null) 
 	{
 		$completedCourses =[];
 		if(isset(Auth::user()->completed_courses)){
 			$completedCourses = json_decode(Auth::user()->completed_courses);
 		}
 		$availableCourses = collect();
+		
+		if ($continue) {
+
+			$user = Auth()->user();
+			$userSchedules = json_decode($user->schedules);
+			$scheduler = $userSchedules[count($userSchedules)-1];
+
+			foreach ($scheduler as $semesterKey => $semester) {
+				foreach ($semester as $sectionKey => $section) {
+					if (!in_array($section->course, $completedCourses)) {
+						array_push($completedCourses, $section->course);
+					}
+				}
+			}	
+
+		}
 
 		//get all the courses where who are not in pivot table, and also all the courses where all the pivot elements are met.
 		$courses = Course::select(
@@ -73,6 +94,7 @@ class GenerateScheduleController extends Controller
 	 */
 	public function getPossibleSchedules(Request $request) 
 	{
+    	$continue = $request->get('continue');
 		//get all the courses needed to pass to the get combinations method
 		$section 		= new Section;
 		$courseSections = $section->getSectionsForScheduler($request);
@@ -82,17 +104,59 @@ class GenerateScheduleController extends Controller
 		$results = new Paginator($combinations, 10);	
     	$results->setPath('generate');
     
+
 		return view('generated-schedules', [
-			'results' => $results,
-			'totalResults' => count($combinations)
+			'results' 		=> $results,
+			'totalResults' 	=> count($combinations),
+			'continue' 		=> $continue
 		]);
 	}
 
 	public function saveSchedule(Request $request) 
 	{
-		dd($request);
-		dd($sections);
-		dd($request);
+		$user = Auth()->user();
+		$userSchedule = json_decode($user->schedules);
+		
+		$continue 		= $request->get('continue');
+		$course 		= $request->get('course');
+		$sectionType 	= $request->get('sectiontype');
+		$sectionCode 	= $request->get('sectioncode');
+		$days 			= $request->get('days');
+		$start 			= $request->get('start');
+		$end 			= $request->get('end');
+		
+		$schedule = [];
+		$semester = [];
+
+		for ($i = 0; $i < count($course); $i++) {
+			$section = [
+				'course' => $course[$i],
+				'type' => $sectionType[$i],
+				'days' => $days[$i],
+				'start' => $start[$i],
+				'end' => $end[$i]
+			];
+
+			array_push($semester, $section);
+		}
+
+		array_push($schedule, $semester);
+
+		if (empty($userSchedule)) {
+			$userSchedule = [];
+			array_push($userSchedule, $schedule);
+		} else if (empty($continue)) {
+			array_push($userSchedule, $schedule);
+		} else {
+			$scheduleNum = count($userSchedule)-1;
+			
+			array_push($userSchedule[$scheduleNum], $semester);
+		}
+		// dd($userSchedule);
+		$user->schedules = json_encode($userSchedule);
+		$user->save();
+
+		return view('confirm-schedule')->with('courses', $this->getAvailableCourses(true));
 	}
 
 }

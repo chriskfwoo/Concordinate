@@ -1,3 +1,48 @@
+/* FOR VIEW SCHEDULE */
+#sidemenu{
+	float: left;
+	border-right: 5px solid black;
+	height: 600px;;
+	/*background-color: #999999;*/
+	color: #400000;
+	font-size: 16px;
+	padding-left: 20px;
+}
+
+#schedule-content{
+	float: left;
+}
+
+.program-schedule{
+	margin-top: 30px;
+}
+
+.program-schedule>select{
+   overflow:auto;
+	 border: none;
+	 /*background-color: #999999;*/
+	 height: auto;
+	 width: 100%;
+	 text-align: center;
+	 outline:none;
+ border:none;
+ box-shadow:none;
+
+}
+
+.program-schedule option:hover{
+	background-color: white;
+	color: #400000;
+}
+
+.program-schedule option:focus{
+	background-color: white;
+	color: #400000;
+
+}
+
+
+
 /*FOR SET COMPLETED PAGE*/
 .vis-hidden {
 	border: 0;
