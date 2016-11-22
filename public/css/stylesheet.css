@@ -248,9 +248,19 @@ ul.tab li a:focus, .active {
 /*Generated Schedules*/
 .details {
   float: left;
-  background-color: grey;
+  width: 25%;
 }
 
-.calendar {
-  background-color: black;
+.viewcalendar {
+  float: left;
+   width: 75%;
+}
+
+.viewcalendar2 {
+  float: left;
+   width: 75%;
+}
+.details-view {
+  float: left;
+  width: 25%;
 }

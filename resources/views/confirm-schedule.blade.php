@@ -25,7 +25,7 @@
                     <!-- THIS FORM IS FOR THE NEXT SEMESTER 
                         NEED TO EDIT THE ACTION -->
 
-                    <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form">
+                    <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form" onsubmit="return checkCourse(this)">
 
                         <div id="generate-schedule" style="display:none">
                             
@@ -91,5 +91,17 @@
         document.getElementById(category).style.display = "block";
             evt.currentTarget.className += " active";
         }
+</script>
+<script type="text/javascript">
+
+  function checkCourse(form)
+  {
+    if($('[name="courses[]"]:checked').length == 0){
+        alert('You must select at least one course!');
+        return false;
+    }
+    return true;
+}
+
 </script>
 @endsection
