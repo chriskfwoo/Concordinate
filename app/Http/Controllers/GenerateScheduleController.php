@@ -95,6 +95,7 @@ class GenerateScheduleController extends Controller
 	public function getPossibleSchedules(Request $request) 
 	{
     	$continue = $request->get('continue');
+    	$semester = $request->get('semester');
 		//get all the courses needed to pass to the get combinations method
 		$section 		= new Section;
 		$courseSections = $section->getSectionsForScheduler($request);
@@ -103,12 +104,12 @@ class GenerateScheduleController extends Controller
 		
 		$results = new Paginator($combinations, 10);	
     	$results->setPath('generate');
-    
 
 		return view('generated-schedules', [
 			'results' 		=> $results,
 			'totalResults' 	=> count($combinations),
-			'continue' 		=> $continue
+			'continue' 		=> $continue,
+			'semester'		=> $semester
 		]);
 	}
 
