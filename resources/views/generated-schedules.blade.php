@@ -6,7 +6,7 @@
    <div class="row">
        <div class="col-md-8 col-md-offset-2">
            <div class="panel panel-default">
-               <div class="panel-heading"><h4><b>Show the generated schedules. {{ $totalResults }} schedules were generated for the {{ $semester }} semester</b></h4></div>
+               <div class="panel-heading"><h4><b>{{ $totalResults }} schedules were generated for the {{ $semester }} semester</b></h4></div>
                <?php
                $i = 0;
                ?>
@@ -35,10 +35,10 @@
                                           navLinks: false, // can click day/week names to navigate views
                                           editable: false,
                                           eventLimit: false// allow "more" link when too many events
-                                       
+
                                         });
 
-                                      
+
                                     </script>
 
                                </div>
@@ -46,21 +46,21 @@
                                    <h4>Schedule {{ $i }}</h4>
                                    <?php foreach ($sections as $section): ?>
 
-                                    
+
 
                                        <?php $course = $section->course ?>
-                                       <input type="text" name="course[]" value="{{ $course }}" hidden="true">{{ $course }}: <br>
+                                       <input type="text" name="course[]" value="{{ $course }}" hidden="true">{{ $course }}:
                                        <?php $sectiontype = $section->type ?>
-                                       <?php if ($section->type == "Lec") 
-                                               {$sectioncode = $section->section1;} 
-                                               else 
+                                       <?php if ($section->type == "Lec")
+                                               {$sectioncode = $section->section1;}
+                                               else
                                                {$sectioncode = $section->section2;} ?>
-                                       <input type="text" name="sectiontype[]" value="{{ $sectiontype }}" hidden="true">{{ $sectiontype }}: Section <input type="text" name="sectioncode[]" value="{{ $sectioncode }}" hidden="true">{{ $sectioncode }}<br>
+                                       <input type="text" name="sectiontype[]" value="{{ $sectiontype }}" hidden="true">{{ $sectiontype }}: Section <input type="text" name="sectioncode[]" value="{{ $sectioncode }}" hidden="true">{{ $sectioncode }}
                                        <?php $days = $section->days ?>
                                        <?php $day = str_split(str_replace("-", "", $days)) ?>
-                                       <input type="text" name="days[]" value="{{ $days }}" hidden="true">{{ $days }}<br>
+                                       <input type="text" name="days[]" value="{{ $days }}" hidden="true">{{ $days }}
                                        <?php $start = $section->start ?>
-                                       <input type="text" name="start[]" value="{{ $start }}" hidden="true">Start: {{ $start }}<br>
+                                       <input type="text" name="start[]" value="{{ $start }}" hidden="true">Start: {{ $start }}
                                        <?php $end = $section->end ?>
                                        <input type="text" name="end[]" value="{{ $end }}" hidden="true">End: {{ $end }}
                                        <br><br>
@@ -88,7 +88,7 @@
                                                     break;
                                                 case "F":
                                                     $daynum = 16;
-                                                    break;        
+                                                    break;
                                             }
                                         }
                                         ?>
@@ -104,12 +104,12 @@
                                             $('#calendar{{ $i }}').fullCalendar( 'renderEvent', events[k]);
                                             k = k + 1;
                                        </script>
-                                       
+
                                     <?php endforeach; ?>
 
                                </div>
 
-                              
+
 
                                 <button type="submit" class="btn completed-btn">Pick this Schedule</button>
                            </form>

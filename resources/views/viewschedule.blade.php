@@ -11,14 +11,14 @@
     @endif
     <div class="row">
         <div id="sidemenu" class="col-sm-2">
-          <p style="text-align: center">Choose A Program Schedule</p>
+          <p style="text-align: center">Choose A Program Sequence Plan</p>
           <div class="program-schedule">
             <!-- make sure the size is variable -->
-            <?php $size = sizeof($schedules); 
+            <?php $size = sizeof($schedules);
             $indexPS = 0;?>
             <select id="programschedule" size="<?= $size ?>">
                 <?php foreach ($schedules as $key => $schedule): ?>
-                  <option value="{{ $key + 1}}">Program Sch. {{ $key + 1}}</option>
+                  <option value="{{ $key + 1}}">Sequence Plan {{ $key + 1}}</option>
                 <?php endforeach; ?>
             </select>
           </div>
@@ -27,13 +27,14 @@
         <div id="schedule-content" class="col-sm-10">
             <?php foreach ($schedules as $key => $schedule): ?>
                 <?php $indexPS++; ?>
-                <div id="schedule{{ $key + 1 }}" class="schedulelist"><h2>Schedule {{ $key + 1 }}</h2>
+                <div id="schedule{{ $key + 1 }}" class="schedulelist">
+                  <h2>Sequence Plan {{ $key + 1 }}</h2>
                   <form role="form" action="{{ url('/schedule/delete') }}" method="post" class="login-form">
                     <input type="hidden" name="scheduleNumber" value={{$key}}>
-                    <button type="submit">Delete this schedule</button>
+                    <button type="submit">Delete This Program Sequence Plan</button>
                   </form>
                   <br>
-                
+
                     <?php foreach ($schedule as $key => $semester): ?>
                     <div id="calendar{{ $indexPS }}{{ $key + 1 }}" class="viewcalendar2">
                                    <script>
@@ -41,7 +42,7 @@
 
                                           allDaySlot: false,
                                           hiddenDays: [ 0, 6 ],
-                                          columnFormat: 'ddd',
+                                          columnFormat: 'dddd',
                                           defaultView:'agendaWeek',
                                           slotDuration: '00:30:00',
                                           minTime: '08:00:00',
@@ -51,22 +52,24 @@
                                           navLinks: false, // can click day/week names to navigate views
                                           editable: false,
                                           eventLimit: false// allow "more" link when too many events
-                                       
+
                                         });
 
-                                      
-                                    </script>                    
+                                    // document.getElementById("calendar{{ $indexPS }}{{ $key + 1 }}").style.maxHeight = "500px";
+                                    document.getElementById("calendar{{ $indexPS }}{{ $key + 1 }}").style.maxWidth = "800px";
+                                    </script>
+
                     </div>
                     <div class="details-view">
                         <h3>Semester {{$key + 1 }}</h3>
                         <script> var k = 0; </script>
                     <?php foreach ($semester as $section): ?>
-                        
-                        <?php $course = $section->course ?><?php echo $course ?><br>
-                        <?php $sectiontype = $section->type ?><?php echo $sectiontype ?><br>
-                        <?php $days = $section->days ?><?php echo $days ?><br>
+
+                        <?php $course = $section->course ?><?php echo $course ?>
+                        <?php $sectiontype = $section->type ?><?php echo $sectiontype ?>
+                        <?php $days = $section->days ?><?php echo $days ?>
                         <?php $day = str_split(str_replace("-", "", $days)) ?>
-                        <?php $start = $section->start ?><?php echo $start ?><br>
+                        <?php $start = $section->start ?><?php echo $start ?>
                         <?php $end = $section->end ?><?php echo $end ?><br>
 
                                        <!-- CREATING EVENTS -->
@@ -91,7 +94,7 @@
                                                     break;
                                                 case "F":
                                                     $daynum = 16;
-                                                    break;        
+                                                    break;
                                             }
                                         }
                                         ?>
