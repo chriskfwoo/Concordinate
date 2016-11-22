@@ -66,7 +66,7 @@ class HomeController extends Controller
         $user->completed_courses = $jsonCompletedCourses;
         $user->save();
 
-        flash('Completed courses saved successfully', 'success');
+        // flash('Completed courses saved successfully', 'success');
         return Redirect::to('completed')->with('completed', $completedCourses);
 
         // @if (in_array('COMP248', $completedCourses)) checked="checked" @endif
@@ -87,7 +87,7 @@ class HomeController extends Controller
         $user->schedules = json_encode($userSchedules);
         $user->save();
 
-        flash('Schedule deleted successfully', 'success');
+        // flash('Schedule deleted successfully', 'success');
         return Redirect::back(); ;
     }
 }
