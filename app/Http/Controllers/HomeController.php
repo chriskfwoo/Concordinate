@@ -9,6 +9,7 @@ use App\User;
 use App\Section;
 use App\Course;
 use Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -49,8 +50,8 @@ class HomeController extends Controller
         }
 
         return view('completed-courses', [
-                'completedCourses' => $completedCourses
-            ]);
+            'completedCourses' => $completedCourses
+        ]);
     }
 
     public function saveCompletedCourses(Request $request) {
@@ -65,9 +66,28 @@ class HomeController extends Controller
         $user->completed_courses = $jsonCompletedCourses;
         $user->save();
 
+        flash('Completed courses saved successfully', 'success');
         return Redirect::to('completed')->with('completed', $completedCourses);
 
         // @if (in_array('COMP248', $completedCourses)) checked="checked" @endif
     }
 
+    public function deleteSchedule(Request $request)
+    {
+        $scheduleNumber = $request->get('scheduleNumber');
+        
+        $user = Auth()->user();
+        $userSchedules = json_decode($user->schedules);
+
+        unset($userSchedules[$scheduleNumber]);
+        $userSchedules = array_values($userSchedules);
+
+        //save the updated schedules
+
+        $user->schedules = json_encode($userSchedules);
+        $user->save();
+
+        flash('Schedule deleted successfully', 'success');
+        return Redirect::back(); ;
+    }
 }

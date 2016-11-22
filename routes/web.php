@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/schedule', 'HomeController@viewScheduleView');
 
+	Route::post('/schedule/delete', 'HomeController@deleteSchedule');
+
 	Route::get('/completed', 'HomeController@completedCoursesView');
 
 	Route::get('/user/profile', 'HomeController@profile');

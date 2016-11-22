@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container-full">
+    @if (session()->has('flash_notification.message'))
+        <div class="alert alert-{{ session('flash_notification.level') }}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            {!! session('flash_notification.message') !!}
+        </div>
+    @endif
     <div class="row">
         <div id="sidemenu" class="col-sm-2">
           <p style="text-align: center">Choose A Program Schedule</p>
@@ -11,7 +18,7 @@
             $indexPS = 0;?>
             <select id="programschedule" size="<?= $size ?>">
                 <?php foreach ($schedules as $key => $schedule): ?>
-                <option value="{{ $key + 1}}">Program Sch. {{ $key + 1}}</option>
+                  <option value="{{ $key + 1}}">Program Sch. {{ $key + 1}}</option>
                 <?php endforeach; ?>
             </select>
           </div>
@@ -21,6 +28,11 @@
             <?php foreach ($schedules as $key => $schedule): ?>
                 <?php $indexPS++; ?>
                 <div id="schedule{{ $key + 1 }}" class="schedulelist"><h2>Schedule {{ $key + 1 }}</h2>
+                  <form role="form" action="{{ url('/schedule/delete') }}" method="post" class="login-form">
+                    <input type="hidden" name="scheduleNumber" value={{$key}}>
+                    <button type="submit">Delete this schedule</button>
+                  </form>
+                  <br>
                 
                     <?php foreach ($schedule as $key => $semester): ?>
                     <div id="calendar{{ $indexPS }}{{ $key + 1 }}" class="viewcalendar2">

@@ -52,7 +52,16 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/schedule') }}">View</a>
           </li>
-          <li class="nav-item dropdown float-xs-right" style="margin-left: 400px;">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="{{ url('/completed') }}">Set Completed Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
+          </li> -->
+
+
+
+          <li class="nav-item dropdown float-xs-right" style="margin-left: 550px">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Account
             </a>
@@ -64,7 +73,7 @@
                           document.getElementById('logout-form').submit();">Logout</a>
               <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
-                                    </form>
+              </form>
             </div>
           </li>
 
@@ -76,9 +85,9 @@
     @yield('content')
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 
 </body>
 </html>

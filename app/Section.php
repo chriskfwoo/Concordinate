@@ -276,7 +276,7 @@ class Section extends Model
     {
         $semester   = $request->get('semester');
         $courses    = $request->get('courses');
-
+        
         //get all the courses needed to pass to the get combinations method
 		$section = new Section;
 		$sections = $section
