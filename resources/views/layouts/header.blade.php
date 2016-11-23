@@ -45,9 +45,9 @@
       <div class="collapse navbar-toggleable-md navbar-custom" id="navbarResponsive">
         <!-- <a class="navbar-brand" href="#">Navbar</a> -->
         <ul class="nav navbar-nav">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/scheduler') }}">Scheduler</a>
           </li>
