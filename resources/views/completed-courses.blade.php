@@ -1,15 +1,17 @@
 @extends('layouts.header')
 
 @section('content')
+<script srs="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <div class="container">
-    @if (session()->has('flash_notification.message'))
-        <div class="alert alert-{{ session('flash_notification.level') }}">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-            {!! session('flash_notification.message') !!}
-        </div>
+    @if(Session::has('flash_message'))
+        <div class="alert alert-success"> {!! session('flash_message') !!}</div>
+        <script>
+            $("div.alert").delay(2000).slideUp(300);
+        </script>
     @endif
+    
+
       <div class="row" style="padding-top:30px;">
 
         <div>
