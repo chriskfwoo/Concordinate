@@ -83,9 +83,9 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                <!-- <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <p  style="text-align:right;padding-right:20px;"><a href="{{ url('/register') }}">Don't have an account?<strong> Sign up now!</strong></a></p>

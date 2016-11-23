@@ -16,6 +16,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
 
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
 <link href="/css/app.css" rel="stylesheet">
 <link href='/css/fullcalendar.css' rel='stylesheet' />
 <link href='/css/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -43,9 +45,9 @@
       <div class="collapse navbar-toggleable-md navbar-custom" id="navbarResponsive">
         <!-- <a class="navbar-brand" href="#">Navbar</a> -->
         <ul class="nav navbar-nav">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/scheduler') }}">Scheduler</a>
           </li>
@@ -66,8 +68,8 @@
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{{ url('/completed') }}">Set Completed Courses</a>
-              <a class="dropdown-item" href="resetpassword.html">Change Password</a>
+              <a class="dropdown-item" href="{{ url('/completed') }}">Completed Courses History</a>
+              <!-- <a class="dropdown-item" href="resetpassword.html">Change Password</a> -->
               <a class="dropdown-item" href="{{ url('/logout') }}"
                 onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">Logout</a>

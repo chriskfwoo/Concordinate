@@ -66,10 +66,8 @@ class HomeController extends Controller
         $user->completed_courses = $jsonCompletedCourses;
         $user->save();
 
-        flash('Completed courses saved successfully', 'success');
+        \Session::flash('flash_message','completed courses successfully saved');
         return Redirect::to('completed')->with('completed', $completedCourses);
-
-        // @if (in_array('COMP248', $completedCourses)) checked="checked" @endif
     }
 
     public function deleteSchedule(Request $request)
@@ -82,12 +80,11 @@ class HomeController extends Controller
         unset($userSchedules[$scheduleNumber]);
         $userSchedules = array_values($userSchedules);
 
-        //save the updated schedules
-
         $user->schedules = json_encode($userSchedules);
         $user->save();
 
-        flash('Schedule deleted successfully', 'success');
+        \Session::flash('flash_message','schedule successfully deleted');
+
         return Redirect::back(); ;
     }
 }

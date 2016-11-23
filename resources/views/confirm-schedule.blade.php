@@ -6,12 +6,12 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    You have generated {var_number} schedules.<br>
+                    <!-- You have generated {var_number} schedules.<br> -->
                 </div>
 
                 <div class="panel-body">
-                    Do you wish to continue?<br>
-                    
+                    You saved a schedule, do you wish to continue your Program Sequence Plan?<br>
+
                     <!-- EDIT REQUIRED DATA IN <form> 
                          This form is just for the NO button-->
                     <form role="form" action="{{ url('/schedule') }}"" method="get" class="generated-form">
@@ -22,13 +22,13 @@
                         <button type="submit">No</button><br>
                     </form><br>
 
-                    <!-- THIS FORM IS FOR THE NEXT SEMESTER 
+                    <!-- THIS FORM IS FOR THE NEXT SEMESTER
                         NEED TO EDIT THE ACTION -->
 
                     <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form" onsubmit="return checkCourse(this)">
 
                         <div id="generate-schedule" style="display:none">
-                            
+
                         <input type="hidden" name="continue" value="1">
 
                             <ul class="tab">
@@ -48,7 +48,7 @@
                             <!-- NEED TO CHECK BY DEFAULT THE CORRECT NEXT SEMESTER BASED ON PREVIOUS GENERATED -->
                                 Semester: <input type="radio" name="semester" value="fall" checked>Fall<input type="radio" name="semester" value="winter">Winter<br><br>
                                 Credit load: <input type="number" name="credit" value="15"><br>
-                                
+
                             </div>
 
                             <div id="time-pref" class="tabcontent">
@@ -57,7 +57,7 @@
                                 Wednesday:Off<input type="checkbox" name="dayoff[]" value="Wednesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
                                 Thursday:Off<input type="checkbox" name="dayoff[]" value="Thursday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
                                 Friday:Off<input type="checkbox" name="dayoff[]" value="Friday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
-                                
+
                             </div>
 
                         <button type="submit" class="btn completed-btn">Generate Schedule</button>

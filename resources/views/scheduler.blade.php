@@ -5,8 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
+                    <p style="text-align:center; padding-top:20px"><strong>Welcome to the scheduler where you create schedules for your Program Sequence Plan!</strong></p>
                 <div class="panel-heading"></div>
-
+                  <p style="text-align:center; padding-top:20px"><i>Instruction: Please set your preferences and course selections.</i></p>
                 <div class="panel-body">
                     <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form" onsubmit="return checkCourse(this)">
 
@@ -17,24 +18,27 @@
                     </ul>
 
                     <div id="course-select" class="tabcontent">
+                        <p style="text-align:center; padding-top:20px"><i>Classes below are the <strong>only</strong> classes you are allow to take based off your Completed Courses History and/or previous saved schedules in the current Program Sequence Plan.</i></p>
                       @foreach ($courses as $course)
                             <input type="checkbox" id="{{$course->id}}" name="courses[]" value = "{{$course->id}}" class="vis-hidden"><label class="scheduler-course-label" for="{{$course->id}}">{{$course->id}}</label>
                       @endforeach
                     </div>
 
                     <div id="preferences" class="tabcontent">
-                        Semester: <input type="radio" name="semester" value="fall" checked>Fall<input type="radio" name="semester" value="winter">Winter<br><br>
+                        Semester: <input type="radio" name="semester" value="fall" checked> Fall  	&nbsp; 	&nbsp;
+
+                        <input type="radio" name="semester" value="winter"> Winter<br><br>
                         Credit load: <input type="number" name="credit" value="15"><br>
-                        
+
                     </div>
 
                     <div id="time-pref" class="tabcontent">
-                        Monday:Off<input type="checkbox" name="dayoff[]" value="Monday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
-                        Tuesday:Off<input type="checkbox" name="dayoff[]" value="Tuesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
-                        Wednesday:Off<input type="checkbox" name="dayoff[]" value="Wednesday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
-                        Thursday:Off<input type="checkbox" name="dayoff[]" value="Thursday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
-                        Friday:Off<input type="checkbox" name="dayoff[]" value="Friday">Not Before:<input type="time" name="before[]">Not after:<input type="time" name="after[]"><br><br>
-                        
+                        Monday:Off<input type="checkbox" name="dayoff[]" value="Monday">	&nbsp;Not Before:<input type="time" name="before[]">	&nbsp;Not after:<input type="time" name="after[]"><br><br>
+                        Tuesday:Off<input type="checkbox" name="dayoff[]" value="Tuesday">	&nbsp;Not Before:<input type="time" name="before[]">	&nbsp;Not after:<input type="time" name="after[]"><br><br>
+                        Wednesday:Off<input type="checkbox" name="dayoff[]" value="Wednesday">	&nbsp;Not Before:<input type="time" name="before[]">	&nbsp;Not after:<input type="time" name="after[]"><br><br>
+                        Thursday:Off<input type="checkbox" name="dayoff[]" value="Thursday">	&nbsp;Not Before:<input type="time" name="before[]">	&nbsp;Not after:<input type="time" name="after[]"><br><br>
+                        Friday:Off<input type="checkbox" name="dayoff[]" value="Friday">	&nbsp;Not Before:<input type="time" name="before[]">	&nbsp;Not after:<input type="time" name="after[]"><br><br>
+
                     </div>
 
                     <script>
