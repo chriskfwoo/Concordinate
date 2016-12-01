@@ -19,15 +19,15 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-	// Route::get('/', 'HomeController@homeView');
+	Route::get('/schedule', 'HomeController@viewScheduleView');
 
-	Route::get('/scheduler', 'GenerateScheduleController@schedulerView');
+	Route::post('/schedule/delete', 'HomeController@deleteSchedule');
+	
+
+	Route::get('/', 'GenerateScheduleController@schedulerView');
 
 	Route::get('/scheduler/generate', 'GenerateScheduleController@getPossibleSchedules');
 
-	Route::get('/', 'HomeController@viewScheduleView');
-
-	Route::post('/schedule/delete', 'HomeController@deleteSchedule');
 
 	Route::get('/completed', 'HomeController@completedCoursesView');
 

@@ -49,7 +49,7 @@
             <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/scheduler') }}">Scheduler</a>
+            <a class="nav-link" href="{{ url('/') }}">Scheduler</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/schedule') }}">View</a>

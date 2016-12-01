@@ -456,7 +456,6 @@ class Section extends Model
             }
         }
 
-        // dd($courses->flatten()->groupBy('course'));
         return $courses->flatten()->groupBy('course');
     }
 }

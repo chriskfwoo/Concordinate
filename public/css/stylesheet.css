@@ -189,6 +189,26 @@ input[type=checkbox]:checked + label {
   color: white !important;
 }
 
+.scheduler-course-label-fall {
+  margin: 10px;
+  padding: 5px;
+  width: 20%;
+  text-align: center;
+  background-color: #FF851B !important;
+  color: white !important;
+}
+
+
+.scheduler-course-label-winter {
+  margin: 10px;
+  padding: 5px;
+  width: 20%;
+  text-align: center;
+  background-color: #0074D9 !important;
+  color: white !important;
+}
+
+
 #course-select>input:hover + label {
   background-color: #400000 !important;
   border-color: #400000 !important;

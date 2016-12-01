@@ -24,7 +24,6 @@ class GenerateScheduleController extends Controller
 
     public function generatedSchedulesView($combinations)
     {
-    	dd($combinations);
     	return view('generated-schedules', [
     		'results' => $combinations
     	]);
@@ -40,10 +39,21 @@ class GenerateScheduleController extends Controller
      */
 	public function getAvailableCourses($continue = null) 
 	{
-		$completedCourses =[];
+		$electiveCount = 0;
+
+		$completedCourses = [];
+
 		if(isset(Auth::user()->completed_courses)){
 			$completedCourses = json_decode(Auth::user()->completed_courses);
 		}
+
+		//count the number of completed electives.
+		foreach($completedCourses as $completedCourse) {
+			if (strpos($completedCourse, 'ELECTIVE') !== false) {
+				$electiveCount++;
+			}
+		}
+
 		$availableCourses = collect();
 		
 		if ($continue) {
@@ -52,9 +62,16 @@ class GenerateScheduleController extends Controller
 			$userSchedules = json_decode($user->schedules);
 			$scheduler = $userSchedules[count($userSchedules)-1];
 
+			//if this page comes from a continue, check last schedule for the courses that are already taken.
 			foreach ($scheduler as $semesterKey => $semester) {
 				foreach ($semester as $sectionKey => $section) {
 					if (!in_array($section->course, $completedCourses)) {
+
+						//check if this course is an elective
+						if (Course::find($section->course)->elective == 1) {
+							$electiveCount++;
+						}
+
 						array_push($completedCourses, $section->course);
 					}
 				}
@@ -65,10 +82,17 @@ class GenerateScheduleController extends Controller
 		//get all the courses where who are not in pivot table, and also all the courses where all the pivot elements are met.
 		$courses = Course::select(
 			'course_list.id',
-			'course_list.name'
+			'course_list.name',
+			'course_list.fall_semester',
+			'course_list.winter_semester'
 		)
-		->whereNotIn('id', $completedCourses)
-		->get();
+		->whereNotIn('id', $completedCourses);
+
+		if ($electiveCount >= 4) {
+			$courses->where('elective', 0);
+		}
+
+		$courses = $courses->get();
 
 		foreach ($courses as $course) {
 			$prereqs = $course->prereqs()->get();
@@ -78,14 +102,23 @@ class GenerateScheduleController extends Controller
 				continue;			
 			}
 			
+			$prereqNum = sizeOf($prereqs);
+
 			//check if all prereqs are met. if yes, push into available courses!
-			foreach ($prereqs as $prereq) {
+			foreach ($prereqs as $key=>$prereq) {
+				
 				if (in_array($prereq->pivot->pre_req_course_id, $completedCourses)) {
-					$availableCourses->push($course);
+					
+					if ($prereqNum == $key + 1) {
+						$availableCourses->push($course);
+					}
+
+				} else {
+					continue;
 				}
 			}
 		}
-			
+
 		return $availableCourses;
 	}
 
@@ -153,7 +186,7 @@ class GenerateScheduleController extends Controller
 			
 			array_push($userSchedule[$scheduleNum], $semester);
 		}
-		// dd($userSchedule);
+		
 		$user->schedules = json_encode($userSchedule);
 		$user->save();
 

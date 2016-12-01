@@ -27,6 +27,11 @@ class HomeController extends Controller
         ]);
     }
 
+    public function redirect()
+    {
+        return app('App\Http\Controllers\GenerateScheduleController')->schedulerView();
+    }
+
     public function viewScheduleView()
     {
         $user = Auth::user();

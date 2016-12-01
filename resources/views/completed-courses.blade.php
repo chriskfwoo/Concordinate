@@ -30,7 +30,7 @@
                     <input type="checkbox" id="COMP248" name="completedCourses[]" value = "COMP248" class="vis-hidden"  @if (in_array('COMP248', $completedCourses)) checked="checked" @endif><label class="course-label"  for="COMP248">COMP248</label>
                     <input type="checkbox" id="ENGR213" name="completedCourses[]" value = "ENGR213" class="vis-hidden"  @if (in_array('ENGR213', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ENGR213">ENGR213</label>
                     <input type="checkbox" id="ENGR201" name="completedCourses[]" value = "ENGR201" class="vis-hidden"  @if (in_array('ENGR201', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ENGR201">ENGR201</label>
-                    <input type="checkbox" id="G.ELEC" name="completedCourses[]" value = "G.ELEC" class="vis-hidden"  @if (in_array('G.ELEC', $completedCourses)) checked="checked" @endif><label class="course-label"  for="G.ELEC">G. ELEC</label>
+                    <!-- <input type="checkbox" id="G.ELEC" name="completedCourses[]" value = "G.ELEC" class="vis-hidden"  @if (in_array('G.ELEC', $completedCourses)) checked="checked" @endif><label class="course-label"  for="G.ELEC">G. ELEC</label> -->
                 </div>
                 <div class="col-sm-6">
 
@@ -38,7 +38,7 @@
                     <input type="checkbox" id="SOEN228" name="completedCourses[]" value = "SOEN228" class="vis-hidden" @if (in_array('SOEN228', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN228">SOEN228</label>
                     <input type="checkbox" id="SOEN287" name="completedCourses[]" value = "SOEN287" class="vis-hidden" @if (in_array('SOEN287', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN287">SOEN287</label>
                     <input type="checkbox" id="ENGR233" name="completedCourses[]" value = "ENGR233" class="vis-hidden" @if (in_array('ENGR233', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ENGR233">ENGR233</label>
-                    <input type="checkbox" id="B.SCI1" name="completedCourses[]" value = "B.SCI1" class="vis-hidden" @if (in_array('B.SCI1', $completedCourses)) checked="checked" @endif><label class="course-label"  for="B.SCI1">B. SCI</label>
+                    <!-- <input type="checkbox" id="B.SCI1" name="completedCourses[]" value = "B.SCI1" class="vis-hidden" @if (in_array('B.SCI1', $completedCourses)) checked="checked" @endif><label class="course-label"  for="B.SCI1">B. SCI</label> -->
                     </div>
 
             </div>
@@ -52,7 +52,7 @@
                     <input type="checkbox" id="COMP348" name="completedCourses[]" value = "COMP348" class="vis-hidden" @if (in_array('COMP348', $completedCourses)) checked="checked" @endif><label class="course-label"  for="COMP348">COMP348</label>
                     <input type="checkbox" id="ENCS282" name="completedCourses[]" value = "ENCS282" class="vis-hidden" @if (in_array('ENCS282', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ENCS282">ENCS282</label>
                     <input type="checkbox" id="ENGR202" name="completedCourses[]" value = "ENGR202" class="vis-hidden" @if (in_array('ENGR202', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ENGR202">ENGR202</label>
-                    <input type="checkbox" id="B.SCI2" name="completedCourses[]" value = "B.SCI2" class="vis-hidden" @if (in_array('B.SCI2', $completedCourses)) checked="checked" @endif><label class="course-label"  for="B.SCI2">B. SCI</label>
+                    <!-- <input type="checkbox" id="B.SCI2" name="completedCourses[]" value = "B.SCI2" class="vis-hidden" @if (in_array('B.SCI2', $completedCourses)) checked="checked" @endif><label class="course-label"  for="B.SCI2">B. SCI</label> -->
                 </div>
                 <div class="col-sm-6">
 
@@ -82,7 +82,6 @@
                     <input type="checkbox" id="SOEN390" name="completedCourses[]" value = "SOEN390" class="vis-hidden" @if (in_array('SOEN390', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN390">SOEN390</label>
                     <input type="checkbox" id="SOEN344" name="completedCourses[]" value = "SOEN344" class="vis-hidden" @if (in_array('SOEN344', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN344">SOEN344</label>
                     <input type="checkbox" id="SOEN345" name="completedCourses[]" value = "SOEN345" class="vis-hidden" @if (in_array('SOEN345', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN345">SOEN345</label>
-                    <input type="checkbox" id="ELECTIVE" name="completedCourses[]" value = "ELECTIVE" class="vis-hidden" @if (in_array('ELECTIVE', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ELECTIVE">ELECTIVE</label>
             </div>
 
             </div>
@@ -95,8 +94,8 @@
                     <input type="checkbox" id="SOEN390" name="completedCourses[]" value = "SOEN390" class="vis-hidden" @if (in_array('SOEN390', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN390">SOEN490</label>
                     <input type="checkbox" id="SOEN321" name="completedCourses[]" value = "SOEN321" class="vis-hidden" @if (in_array('SOEN321', $completedCourses)) checked="checked" @endif><label class="course-label"  for="SOEN321">SOEN321</label>
                     <input type="checkbox" id="ENGR301" name="completedCourses[]" value = "ENGR301" class="vis-hidden" @if (in_array('ENGR301', $completedCourses)) checked="checked" @endif><label class="course-label"  for="ENGR301">ENGR301</label>
-                    <input type="checkbox" id="T.ELEC1" name="completedCourses[]" value = "T.ELEC1" class="vis-hidden" @if (in_array('T.ELEC', $completedCourses)) checked="checked" @endif><label class="course-label"  for="T.ELEC1">T. ELEC</label>
-                    <input type="checkbox" id="T.ELEC2" name="completedCourses[]" value = "T.ELEC2" class="vis-hidden" @if (in_array('T.ELEC', $completedCourses)) checked="checked" @endif><label class="course-label"  for="T.ELEC2">T. ELEC</label>
+                    <input type="checkbox" id="T.ELECTIVE1" name="completedCourses[]" value = "T.ELECTIVE1" class="vis-hidden" @if (in_array('T.ELECTIVE1', $completedCourses)) checked="checked" @endif><label class="course-label"  for="T.ELECTIVE1">T. ELEC</label>
+                    <input type="checkbox" id="T.ELECTIVE2" name="completedCourses[]" value = "T.ELECTIVE2" class="vis-hidden" @if (in_array('T.ELECTIVE2', $completedCourses)) checked="checked" @endif><label class="course-label"  for="T.ELECTIVE2">T. ELEC</label>
             </div>
                 <div class="col-sm-6">
 

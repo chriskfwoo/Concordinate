@@ -19,8 +19,15 @@
 
                     <div id="course-select" class="tabcontent">
                         <p style="text-align:center; padding-top:20px"><i>Classes below are the <strong>only</strong> classes you are allow to take based off your Completed Courses History and/or previous saved schedules in the current Program Sequence Plan.</i></p>
+
                       @foreach ($courses as $course)
-                            <input type="checkbox" id="{{$course->id}}" name="courses[]" value = "{{$course->id}}" class="vis-hidden"><label class="scheduler-course-label" for="{{$course->id}}">{{$course->id}}</label>
+                            @if ($course->fall_semester == 1 && $course->winter_semester == 0)
+                                <input type="checkbox" id="{{$course->id}}" name="courses[]" value = "{{$course->id}}" class="vis-hidden"><label class="scheduler-course-label-fall" for="{{$course->id}}">{{$course->id}}</label>
+                            @elseif ($course->fall_semester == 0 && $course->winter_semester == 1)
+                                <input type="checkbox" id="{{$course->id}}" name="courses[]" value = "{{$course->id}}" class="vis-hidden"><label class="scheduler-course-label-winter" for="{{$course->id}}">{{$course->id}}</label>
+                            @else
+                                <input type="checkbox" id="{{$course->id}}" name="courses[]" value = "{{$course->id}}" class="vis-hidden"><label class="scheduler-course-label" for="{{$course->id}}">{{$course->id}}</label>
+                            @endif
                       @endforeach
                     </div>
 
@@ -28,7 +35,7 @@
                         Semester: <input type="radio" name="semester" value="fall" checked> Fall  	&nbsp; 	&nbsp;
 
                         <input type="radio" name="semester" value="winter"> Winter<br><br>
-                        Credit load: <input type="number" name="credit" value="15"><br>
+                        Course load: <input type="number" name="courseLoad" value="4"><br>
 
                     </div>
 

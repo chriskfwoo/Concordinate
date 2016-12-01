@@ -47,7 +47,7 @@
 
                             <!-- NEED TO CHECK BY DEFAULT THE CORRECT NEXT SEMESTER BASED ON PREVIOUS GENERATED -->
                                 Semester: <input type="radio" name="semester" value="fall" checked>Fall<input type="radio" name="semester" value="winter">Winter<br><br>
-                                Credit load: <input type="number" name="credit" value="15"><br>
+                                Course load: <input type="number" name="credit" value="4"><br>
 
                             </div>
 
