@@ -180,6 +180,31 @@ input[type=checkbox]:checked + label {
 
 /* FOR SCHEDULER PART*/
 
+.color-container {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.input-color {
+  display: block;
+    margin: auto;
+    position: relative;
+}
+.input-color input {
+    margin:auto;
+    padding-left: 20%;
+}
+.input-color .color-box {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #ccc;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
 .scheduler-course-label {
   margin: 10px;
   padding: 5px;

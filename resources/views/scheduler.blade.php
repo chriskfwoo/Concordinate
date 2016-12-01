@@ -8,6 +8,24 @@
                     <p style="text-align:center; padding-top:20px"><strong>Welcome to the scheduler where you create schedules for your Program Sequence Plan!</strong></p>
                 <div class="panel-heading"></div>
                   <p style="text-align:center; padding-top:20px"><i>Instruction: Please set your preferences and course selections.</i></p>
+
+                  <p style="text-align:center";>
+                    <i>The color of the course box represents which semester the course is available.</i>
+                    <div class="color-container">
+                        <div class="input-color">
+                            <input type="text" value="Fall" />
+                            <div class="color-box" style="background-color: #FF851B;"></div>
+                        </div>
+                        <div class="input-color">
+                            <input type="text" value="Winter" />
+                            <div class="color-box" style="background-color: #0074D9;"></div>
+                        </div>
+                        <div class="input-color">
+                            <input type="text" value="Both" />
+                            <div class="color-box" style="background-color: #d9534f;"></div>
+                        </div>
+                    </div>
+                  </p>
                 <div class="panel-body">
                     <form role="form" action="{{ url('/scheduler/generate') }}" method="get" class="login-form" onsubmit="return checkCourse(this)">
 
@@ -20,6 +38,7 @@
                     <div id="course-select" class="tabcontent">
                     Semester: <input type="radio" name="semester" value="fall" onclick="dispCourse(this.value);"> Fall    &nbsp;  &nbsp;
                             <input type="radio" name="semester" value="winter" onclick="dispCourse(this.value);"> Winter<br>
+
                         <p style="text-align:center; padding-top:20px"><i>Classes below are the <strong>only</strong> classes you are allow to take based off your Completed Courses History and/or previous saved schedules in the current Program Sequence Plan.</i></p>
 
                       @foreach ($courses as $course)
