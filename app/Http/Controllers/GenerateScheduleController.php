@@ -84,7 +84,8 @@ class GenerateScheduleController extends Controller
 			'course_list.id',
 			'course_list.name',
 			'course_list.fall_semester',
-			'course_list.winter_semester'
+			'course_list.winter_semester',
+			'course_list.priority'
 		)
 		->whereNotIn('id', $completedCourses);
 
@@ -92,7 +93,9 @@ class GenerateScheduleController extends Controller
 			$courses->where('elective', 0);
 		}
 
-		$courses = $courses->get();
+		$courses = $courses
+			->orderBy('course_list.priority')
+			->get();
 
 		foreach ($courses as $course) {
 			$prereqs = $course->prereqs()->get();
