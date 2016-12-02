@@ -88,7 +88,7 @@ class HomeController extends Controller
         $user->schedules = json_encode($userSchedules);
         $user->save();
 
-        \Session::flash('flash_message','schedule successfully deleted');
+        \Session::flash('flash_message','Program sequence successfully deleted');
 
         return Redirect::back(); ;
     }
